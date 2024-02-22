@@ -30,7 +30,10 @@ The calculations are simple but repeating a task that can be avoided don't sound
 
 ## Support me! 
 
+<p align="start">
+<img src="art/bmc_qr.png" width=120px height=120px>
 <a href="https://www.buymeacoffee.com/darkwhiteapps" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+</p>
 
 ## License
 
