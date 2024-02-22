@@ -10,6 +10,7 @@ https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/780203b6-f3
 
 ## Features:
 
+ - Continues detection.
  - Pause/Resume detection without closing the camera.
 
 ## Benchmark
