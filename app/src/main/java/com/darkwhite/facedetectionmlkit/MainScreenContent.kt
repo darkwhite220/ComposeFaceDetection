@@ -67,6 +67,10 @@ fun MainScreenContent(
                 text = "Face Detection w/ Pause/Resume",
                 onClick = { startFaceDetection = FaceDetectionFeature.PAUSE_RESUME },
             )
+            MyButton(
+                text = "Front Camera Face Detection",
+                onClick = { startFaceDetection = FaceDetectionFeature.FRONT_CAMERA },
+            )
         }
     }
     
@@ -82,12 +86,15 @@ fun MainScreenContent(
         FaceDetectionFeature.PAUSE_RESUME -> FaceDetectionScreenContent(
             onBackClick = { startFaceDetection = FaceDetectionFeature.OFF }
         )
+        FaceDetectionFeature.FRONT_CAMERA -> FaceDetectionFrontCameraScreenContent(
+            onBackClick = { startFaceDetection = FaceDetectionFeature.OFF }
+        )
         FaceDetectionFeature.OFF -> {}
     }
 }
 
 enum class FaceDetectionFeature {
-    OFF, PAUSE_RESUME, CONTINUES
+    OFF, PAUSE_RESUME, CONTINUES, FRONT_CAMERA,
 }
 
 @Composable
