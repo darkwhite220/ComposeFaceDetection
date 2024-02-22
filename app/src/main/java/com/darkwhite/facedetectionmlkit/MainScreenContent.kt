@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +29,7 @@ fun MainScreenContent(
 ) {
     var showPermissionNeeded by remember { mutableStateOf(true) }
     var initRequestPermission by remember { mutableStateOf(false) }
-    var startFaceDetection by remember { mutableStateOf(FaceDetectionFeature.OFF) }
+    var startFaceDetection by rememberSaveable { mutableStateOf(FaceDetectionFeature.OFF) }
     val requestPermission = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions()
     ) { result ->
@@ -71,6 +72,10 @@ fun MainScreenContent(
                 text = "Front Camera Face Detection",
                 onClick = { startFaceDetection = FaceDetectionFeature.FRONT_CAMERA },
             )
+            MyButton(
+                text = "Screen & Face Rotation Face Detection",
+                onClick = { startFaceDetection = FaceDetectionFeature.ROTATIONS },
+            )
         }
     }
     
@@ -89,12 +94,15 @@ fun MainScreenContent(
         FaceDetectionFeature.FRONT_CAMERA -> FaceDetectionFrontCameraScreenContent(
             onBackClick = { startFaceDetection = FaceDetectionFeature.OFF }
         )
+        FaceDetectionFeature.ROTATIONS -> FaceDetectionRotationScreenContent(
+            onBackClick = { startFaceDetection = FaceDetectionFeature.OFF }
+        )
         FaceDetectionFeature.OFF -> {}
     }
 }
 
 enum class FaceDetectionFeature {
-    OFF, PAUSE_RESUME, CONTINUES, FRONT_CAMERA,
+    OFF, PAUSE_RESUME, CONTINUES, FRONT_CAMERA, ROTATIONS,
 }
 
 @Composable
