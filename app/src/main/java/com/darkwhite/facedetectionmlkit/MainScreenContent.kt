@@ -3,7 +3,8 @@ package com.darkwhite.facedetectionmlkit
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -27,7 +28,7 @@ fun MainScreenContent(
 ) {
     var showPermissionNeeded by remember { mutableStateOf(true) }
     var initRequestPermission by remember { mutableStateOf(false) }
-    var startFaceDetection by remember { mutableStateOf(false) }
+    var startFaceDetection by remember { mutableStateOf(FaceDetectionFeature.OFF) }
     val requestPermission = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions()
     ) { result ->
@@ -48,18 +49,24 @@ fun MainScreenContent(
         showPermissionNeeded = notPermittedList.isNotEmpty()
     }
     
-    Box(
+    Column(
         modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
         if (showPermissionNeeded) {
             Button(onClick = { initRequestPermission = true }) {
                 Text(text = "Request Permissions")
             }
         } else {
-            Button(onClick = { startFaceDetection = true }) {
-                Text(text = "Start Face Detection")
-            }
+            MyButton(
+                text = "Continues Face Detection",
+                onClick = { startFaceDetection = FaceDetectionFeature.CONTINUES },
+            )
+            MyButton(
+                text = "Face Detection w/ Pause/Resume",
+                onClick = { startFaceDetection = FaceDetectionFeature.PAUSE_RESUME },
+            )
         }
     }
     
@@ -68,9 +75,27 @@ fun MainScreenContent(
         initRequestPermission = false
     }
     
-    if (startFaceDetection) {
-        FaceDetectionScreenContent(
-            onBackClick = { startFaceDetection = false }
+    when (startFaceDetection) {
+        FaceDetectionFeature.CONTINUES -> FaceDetectionContinuesScreenContent(
+            onBackClick = { startFaceDetection = FaceDetectionFeature.OFF }
         )
+        FaceDetectionFeature.PAUSE_RESUME -> FaceDetectionScreenContent(
+            onBackClick = { startFaceDetection = FaceDetectionFeature.OFF }
+        )
+        FaceDetectionFeature.OFF -> {}
+    }
+}
+
+enum class FaceDetectionFeature {
+    OFF, PAUSE_RESUME, CONTINUES
+}
+
+@Composable
+private fun MyButton(
+    text: String,
+    onClick: () -> Unit
+) {
+    Button(onClick = onClick) {
+        Text(text = text)
     }
 }
