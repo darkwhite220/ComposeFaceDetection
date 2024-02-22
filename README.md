@@ -2,6 +2,12 @@
 
 Sample app to demonstrate [MLKit Face detection](https://developers.google.com/ml-kit/vision/face-detection/android) with CameraX in Compose.
 
+
+
+https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/780203b6-f3e1-4582-a4dd-cd4d276a30c4
+
+
+
 ## Benchmark
 
 Of course the face detector is not taking the full size image from the camera, we are cropping it (squashing) to a smaller image to work with.
