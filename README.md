@@ -8,6 +8,10 @@ https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/780203b6-f3
 
 
 
+## Features:
+
+ - Pause/Resume detection without closing the camera.
+
 ## Benchmark
 
 Of course the face detector is not taking the full size image from the camera, we are cropping it (squashing) to a smaller image to work with.
