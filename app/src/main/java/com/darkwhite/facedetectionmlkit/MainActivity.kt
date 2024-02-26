@@ -30,7 +30,8 @@ class MainActivity : ComponentActivity() {
     companion object {
         private val REQUIRED_PERMISSIONS =
             mutableListOf(
-                android.Manifest.permission.CAMERA
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.RECORD_AUDIO,
             ).toTypedArray()
     }
 }

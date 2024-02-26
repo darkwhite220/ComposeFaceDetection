@@ -80,6 +80,10 @@ fun MainScreenContent(
                 text = "Take Photo while Face Detecting",
                 onClick = { startFaceDetection = FaceDetectionFeature.TAKE_PHOTO },
             )
+            MyButton(
+                text = "Take Video while Face Detecting",
+                onClick = { startFaceDetection = FaceDetectionFeature.TAKE_Video },
+            )
         }
     }
     
@@ -104,12 +108,15 @@ fun MainScreenContent(
         FaceDetectionFeature.TAKE_PHOTO -> FaceDetectionTakePhotoScreenContent(
             onBackClick = { startFaceDetection = FaceDetectionFeature.OFF }
         )
+        FaceDetectionFeature.TAKE_Video -> FaceDetectionTakeVideoScreenContent(
+            onBackClick = { startFaceDetection = FaceDetectionFeature.OFF }
+        )
         FaceDetectionFeature.OFF -> {}
     }
 }
 
 enum class FaceDetectionFeature {
-    OFF, PAUSE_RESUME, CONTINUES, FRONT_CAMERA, ROTATIONS, TAKE_PHOTO
+    OFF, PAUSE_RESUME, CONTINUES, FRONT_CAMERA, ROTATIONS, TAKE_PHOTO, TAKE_Video
 }
 
 @Composable
