@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.graphics.Rect
 import android.graphics.RectF
 import android.provider.MediaStore
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -69,6 +70,7 @@ fun FaceDetectionTakeVideoScreenContent(
     var imageRect by remember { mutableStateOf(Rect()) }
     
     val onFaceDetected = { facesList: List<Face?>, rect: Rect ->
+        Log.d("FaceDetectionTakeVideoScreenContent", "${System.currentTimeMillis()}")
         faces = FacesData(facesList)
         imageRect = rect
     }
@@ -150,7 +152,7 @@ private fun FaceDetectionUiContent(
                     )
                 }, executor
             )
-            
+            previewView.implementationMode = PreviewView.ImplementationMode.PERFORMANCE
             previewView
         },
     )
