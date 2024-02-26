@@ -13,7 +13,7 @@ https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/780203b6-f3
  - Continues detection.
  - Pause/Resume detection without closing the camera.
 
-## Benchmark
+## Benchmark 🤓
 
 Of course the face detector is not taking the full size image from the camera, we are cropping it (squashing) to a smaller image to work with.
 
@@ -39,7 +39,21 @@ As for the "by rememeber" & "inside canvas", we need to get the canvas size to c
  
 The calculations are simple but repeating a task that can be avoided don't sound right to me.
 
-## Support me! 
+## Support me! ❤️
+
+If you like my work please support me & you will get:
+
+### 1- Faster face detection (avg time 33ms = 30FPS) (min 18ms, high 57ms)
+ 
+ 2- Front camera face detection
+ 
+ 3- Screen rotation & face tilte face detection
+ 
+ 4- Take a Photo while face detecting
+ 
+ 5- Take a Video while face detecting
+
+https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/f33f4cd2-019a-4458-be79-32e62f541e8a
 
 <p align="start">
 <img src="art/bmc_qr.png" width=120px height=120px>
