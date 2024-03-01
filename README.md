@@ -58,6 +58,9 @@ https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/f33f4cd2-01
 <p align="start">
 <img src="art/bmc_qr.png" width=120px height=120px>
 <a href="https://www.buymeacoffee.com/darkwhiteapps" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
+<img src="art/ko-fi_qrcode.png" width=120px height=120px>
+ <a href='https://ko-fi.com/darkwhite' target='_blank'><img style='border:0px;height:60px;width: 170px;' src='https://storage.ko-fi.com/cdn/brandasset/kofi_bg_tag_dark.png' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 </p>
 
 ## License
