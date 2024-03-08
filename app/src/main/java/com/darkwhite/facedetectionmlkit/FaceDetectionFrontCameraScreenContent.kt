@@ -41,7 +41,7 @@ import com.google.mlkit.vision.face.Face
 import kotlin.math.ceil
 
 /**
- * The only difference is to set:
+ * Same as back camera, plus:
  * 1) .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
  * 2) update "calculateRect"
  */

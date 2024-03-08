@@ -21,6 +21,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -32,11 +33,13 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.toSize
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import com.google.mlkit.vision.face.Face
@@ -159,43 +162,43 @@ private fun FaceDetectionUiContent(
     val borderSize by remember { mutableFloatStateOf(dpToPx * 2) }
     
     // Option 1: One time calculation based of the size of the canvas
-//    var canvasSize by remember { mutableStateOf(Size.Zero) }
-//    val imageRectWidth by remember(imageRect()) { derivedStateOf { imageRect().width().toFloat() } }
-//    val imageRectHeight by remember(imageRect()) {
-//        derivedStateOf { imageRect().height().toFloat() }
-//    }
-//    val scaleX by remember(canvasSize.width, imageRectHeight) {
-//        derivedStateOf { canvasSize.width / imageRectHeight }
-//    }
-//    val scaleY by remember(canvasSize.height, imageRectWidth) {
-//        derivedStateOf { canvasSize.height / imageRectWidth }
-//    }
-//    val scale by remember(scaleX, scaleY) { mutableFloatStateOf(scaleX.coerceAtLeast(scaleY)) }
-//    val offsetX by remember(scale) {
-//        mutableFloatStateOf((canvasSize.width - ceil(imageRectHeight * scale)) / 2.0f)
-//    }
-//    val offsetY by remember(scale) {
-//        mutableFloatStateOf((canvasSize.height - ceil(imageRectWidth * scale)) / 2.0f)
-//    }
+    var canvasSize by remember { mutableStateOf(Size.Zero) }
+    val imageRectWidth by remember(imageRect()) { derivedStateOf { imageRect().width().toFloat() } }
+    val imageRectHeight by remember(imageRect()) {
+        derivedStateOf { imageRect().height().toFloat() }
+    }
+    val scaleX by remember(canvasSize.width, imageRectHeight) {
+        derivedStateOf { canvasSize.width / imageRectHeight }
+    }
+    val scaleY by remember(canvasSize.height, imageRectWidth) {
+        derivedStateOf { canvasSize.height / imageRectWidth }
+    }
+    val scale by remember(scaleX, scaleY) { mutableFloatStateOf(scaleX.coerceAtLeast(scaleY)) }
+    val offsetX by remember(scale) {
+        mutableFloatStateOf((canvasSize.width - ceil(imageRectHeight * scale)) / 2.0f)
+    }
+    val offsetY by remember(scale) {
+        mutableFloatStateOf((canvasSize.height - ceil(imageRectWidth * scale)) / 2.0f)
+    }
     
     Canvas(
         modifier = Modifier
             .fillMaxSize()
-//            .onGloballyPositioned {
-//                canvasSize = it.size.toSize()
-//            }
+            .onGloballyPositioned {
+                canvasSize = it.size.toSize()
+            }
     ) {
         // Option 2: Get canvas size from the DrawScope, but repeat the calculations every time
         // faces change
-        val imageRectWidth = imageRect().width().toFloat()
-        val imageRectHeight = imageRect().height().toFloat()
-        val scaleX = size.width / imageRectHeight
-        val scaleY = size.height / imageRectWidth
-        val scale = scaleX.coerceAtLeast(scaleY)
-        
-        // Calculate offset (we need to center the overlay on the target)
-        val offsetX = (size.width - ceil(imageRectHeight * scale)) / 2.0f
-        val offsetY = (size.height - ceil(imageRectWidth * scale)) / 2.0f
+//        val imageRectWidth = imageRect().width().toFloat()
+//        val imageRectHeight = imageRect().height().toFloat()
+//        val scaleX = size.width / imageRectHeight
+//        val scaleY = size.height / imageRectWidth
+//        val scale = scaleX.coerceAtLeast(scaleY)
+//
+//        // Calculate offset (we need to center the overlay on the target)
+//        val offsetX = (size.width - ceil(imageRectHeight * scale)) / 2.0f
+//        val offsetY = (size.height - ceil(imageRectWidth * scale)) / 2.0f
         
         faces().faces.forEach {
             it?.let { face ->

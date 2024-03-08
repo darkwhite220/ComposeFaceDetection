@@ -179,8 +179,10 @@ private fun FaceDetectionUiContent(
     DisplayPhoto(bitmap = { bitmap })
     
     LaunchedEffect(key1 = bitmap) {
-        delay(3000)
-        bitmap = null
+        bitmap?.let {
+            delay(3000)
+            bitmap = null
+        }
     }
 }
 
@@ -223,7 +225,6 @@ private fun DrawBoxes(
 ) {
     val borderSize by remember { mutableFloatStateOf(dpToPx * 2) }
     
-    // Option 1: One time calculation based of the size of the canvas
     var canvasSize by remember { mutableStateOf(Size.Zero) }
     val imageRectWidth by remember(imageRect()) { derivedStateOf { imageRect().width().toFloat() } }
     val imageRectHeight by remember(imageRect()) {
@@ -250,18 +251,6 @@ private fun DrawBoxes(
                 canvasSize = it.size.toSize()
             }
     ) {
-        // Option 2: Get canvas size from the DrawScope, but repeat the calculations every time
-        // faces change
-//        val imageRectWidth = imageRect().width().toFloat()
-//        val imageRectHeight = imageRect().height().toFloat()
-//        val scaleX = size.width / imageRectHeight
-//        val scaleY = size.height / imageRectWidth
-//        val scale = scaleX.coerceAtLeast(scaleY)
-        
-        // Calculate offset (we need to center the overlay on the target)
-//        val offsetX = (size.width - ceil(imageRectHeight * scale)) / 2.0f
-//        val offsetY = (size.height - ceil(imageRectWidth * scale)) / 2.0f
-        
         faces().faces.forEach {
             it?.let { face ->
                 val rect = calculateRect(

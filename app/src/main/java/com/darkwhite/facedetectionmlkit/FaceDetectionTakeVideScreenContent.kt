@@ -70,7 +70,6 @@ fun FaceDetectionTakeVideoScreenContent(
     var imageRect by remember { mutableStateOf(Rect()) }
     
     val onFaceDetected = { facesList: List<Face?>, rect: Rect ->
-        Log.d("FaceDetectionTakeVideoScreenContent", "${System.currentTimeMillis()}")
         faces = FacesData(facesList)
         imageRect = rect
     }
@@ -207,9 +206,6 @@ private fun FaceDetectionUiContent(
     }
 }
 
-/**
- * CaptureEvent listener.
- */
 private val captureListener = Consumer<VideoRecordEvent> { event ->
     if (event !is VideoRecordEvent.Status) {
         println("EVENT: $event")
