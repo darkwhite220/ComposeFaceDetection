@@ -121,7 +121,7 @@ private fun FaceDetectionUiContent(
                     )
                 }, executor
             )
-            
+            previewView.implementationMode = PreviewView.ImplementationMode.PERFORMANCE
             previewView
         },
     )

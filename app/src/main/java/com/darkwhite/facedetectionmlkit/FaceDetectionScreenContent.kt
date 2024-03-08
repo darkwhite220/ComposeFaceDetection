@@ -89,7 +89,12 @@ fun FaceDetectionScreenContent(
             }
     }
     
-    val previewView = remember { PreviewView(context) }
+    val previewView = remember {
+        PreviewView(context)
+            .apply {
+                implementationMode = PreviewView.ImplementationMode.PERFORMANCE
+            }
+    }
     val preview = remember {
         Preview.Builder().build().apply {
             setSurfaceProvider(previewView.surfaceProvider)
