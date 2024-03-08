@@ -2,58 +2,30 @@
 
 Sample app to demonstrate [MLKit Face detection](https://developers.google.com/ml-kit/vision/face-detection/android) with CameraX in Compose.
 
-
-
 https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/780203b6-f3e1-4582-a4dd-cd4d276a30c4
 
-
+https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/f33f4cd2-019a-4458-be79-32e62f541e8a
 
 ## Features:
 
  - Continues detection.
  - Pause/Resume detection without closing the camera.
+ - Front camera face detection
+ - Screen rotation & face tilt face detection
+ - Take a Photo while face detecting
+ - Take a Video while face detecting
 
 ## Benchmark 🤓
 
-Of course the face detector is not taking the full size image from the camera, we are cropping it (squashing) to a smaller image to work with.
+On my test device Samsung M21:
 
-From the docs: 
->you should use an image with dimensions of at least **480x360** pixels. If you are detecting faces in real time, capturing frames at this minimum resolution can help reduce latency.
-
-My phone didn't support "480x360" dimension, so I have gone a step lower & one higher.
-
-On my test device Samsung M21 (in milliseconds):
-
-<p align="center">
-    <img src="art/benchmark.jpg" width=100% height=100%>
-</p>
-
- - First row is average.
- - Second row is slowest. 
- - third row is fastest. 
- 
-As for the "by rememeber" & "inside canvas", we need to get the canvas size to calculate the boxes (detected faces) position & size.
-
- - In "by rememeber" I'm getting the size of the canvas from Modifier.onGloballyPositioned and do the math one time thanks to remember.  
- - With "inside canvas" we get the canvas size from DrawScope and do the math everytime detectedFaces change, but as you can see it's sometimes faster than "by rememeber".
- 
-The calculations are simple but repeating a task that can be avoided don't sound right to me.
+ - Average 33ms = 30FPS
+ - Fastest 18ms = 55FPS
+ - Slowest 57ms = 17FPS
 
 ## Support me! ❤️
 
-If you like my work please support me & you will get:
-
-### 1- Faster face detection (avg time 33ms = 30FPS) (min 18ms, high 57ms)
- 
- 2- Front camera face detection
- 
- 3- Screen rotation & face tilte face detection
- 
- 4- Take a Photo while face detecting
- 
- 5- Take a Video while face detecting
-
-https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/f33f4cd2-019a-4458-be79-32e62f541e8a
+If you like my work please support me, Thank you. 
 
 <p align="start">
 <img src="art/bmc_qr.png" width=120px height=120px>
