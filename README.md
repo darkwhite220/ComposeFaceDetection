@@ -4,8 +4,6 @@ Sample app to demonstrate [MLKit Face detection](https://developers.google.com/m
 
 https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/780203b6-f3e1-4582-a4dd-cd4d276a30c4
 
-https://github.com/darkwhite220/ComposeFaceDetection/assets/53045980/f33f4cd2-019a-4458-be79-32e62f541e8a
-
 ## Features:
 
  - Continues detection.
