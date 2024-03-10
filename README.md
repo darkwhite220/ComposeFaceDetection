@@ -21,6 +21,14 @@ On my test device Samsung M21:
  - Fastest 18ms = 55FPS
  - Slowest 57ms = 17FPS
 
+## Find me! 👨‍💻
+
+You need custom made app/feature?
+
+<p>
+<a href="https://www.upwork.com/workwith/abderrahima" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Upwork_Logo.svg" alt="Upwork" style="height: 60px !important;width: 223px !important;" ></a>
+</p>
+
 ## Support me! ❤️
 
 If you like my work please support me, Thank you. 
